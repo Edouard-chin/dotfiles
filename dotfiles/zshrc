@@ -8,7 +8,10 @@ if [[ -f /opt/dev/dev.sh ]] && [[ $- == *i* ]]; then
 fi
 # End Shopify
 
+# Zsh
 autoload -Uz compinit
 compinit
+# End Zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+chruby 2.4.4
