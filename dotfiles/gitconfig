@@ -1,0 +1,23 @@
+[core]
+	editor = nano
+        excludesfile = ~/.gitignore_global
+[alias]
+  ci = commit
+  co = checkout
+  st = status
+  br = branch
+  amend-head = commit --amend --reuse-message=HEAD
+  pfb = "!git push --force origin \"$(git rev-parse --abbrev-ref HEAD)\""
+  review = commit -m 'PR review'
+
+[push]
+  default = simple
+[pull]
+  rebase = true
+[color]
+  ui = true
+[user]
+  name = Edouard CHIN
+  email = edouard.chin@shopify.com
+[rebase]
+  autosquash = true

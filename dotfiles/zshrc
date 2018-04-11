@@ -1,0 +1,14 @@
+export ALTERNATE_EDITOR=""
+export EDITOR=/Applications/Emacs.app/Contents/MacOS/Emacs
+
+# Shopify
+export DEV_ALLOW_ITERM2_INTEGRATION=1
+if [[ -f /opt/dev/dev.sh ]] && [[ $- == *i* ]]; then
+  source /opt/dev/dev.sh
+fi
+# End Shopify
+
+autoload -Uz compinit
+compinit
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
