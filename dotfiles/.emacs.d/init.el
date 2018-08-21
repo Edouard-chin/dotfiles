@@ -32,6 +32,7 @@
     (flx-ido projectile auto-complete expand-region magit zenburn-theme))))
 
 (custom-set-faces
+ '(cursor ((t (:background "systemYellowColor" :foreground "#DCDCCC"))))
  '(region ((t (:background "Orange")))))
 
 ;; Run ruby test at point, this requires the rails test runner and `dev` (Shopify)
@@ -120,3 +121,8 @@
 
 ;; Enable CUA selection mode for rectangle selection improvement
 (cua-selection-mode t)
+
+;; Write backup files to own directory
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name
+                 (concat user-emacs-directory "backups")))))
