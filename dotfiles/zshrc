@@ -1,17 +1,22 @@
-export ALTERNATE_EDITOR=""
-export EDITOR=/Applications/Emacs.app/Contents/MacOS/Emacs
-
 # Shopify
 export DEV_ALLOW_ITERM2_INTEGRATION=1
 if [[ -f /opt/dev/dev.sh ]] && [[ $- == *i* ]]; then
   source /opt/dev/dev.sh
 fi
+
+autoload -Uz compinit
+compinit
 # End Shopify
 
 # Zsh
-autoload -Uz compinit
-compinit
+autoload -U promptinit; promptinit
+prompt pure
 # End Zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-chruby 2.4.4
+chruby 2.5.3
+
+# Alias
+alias be="bundle exec"
+alias rails_next="SHOPIFY_NEXT=1 DISABLE_SPRING=1 $@"
+# End Alias

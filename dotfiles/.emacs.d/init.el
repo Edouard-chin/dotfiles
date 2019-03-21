@@ -86,10 +86,6 @@
 (use-package company
   :ensure t
   :config
-  (setq company-idle-delay 0.5)
-  (setq company-show-numbers t)
-  (setq company-tooltip-limit 10)
-  (setq company-minimum-prefix-length 2)
   (global-company-mode))
 
 (use-package zenburn-theme
@@ -99,7 +95,9 @@
 
 (use-package ace-window
   :ensure t
-  :bind (([remap other-window] . ace-window)))
+  :bind (([remap other-window] . ace-window))
+  :config
+  (setq aw-scope 'frame))
 
 (use-package paren
   :config
@@ -126,7 +124,7 @@
 
 (use-package avy
   :ensure t
-  :bind (("C-'" . avy-goto-char))
+  :bind (("C-'" . avy-goto-char-2))
   :config
   (setq avy-background t))
 
