@@ -137,6 +137,13 @@
   :ensure t
   :bind ("C-x C-t" . er/expand-region))
 
+(use-package multiple-cursors
+  :ensure t
+  :bind (("C-S-c C-S-c" . mc/edit-lines)
+         ("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this))
+)
+
 (use-package whitespace
   :init
   (dolist (hook '(prog-mode-hook text-mode-hook))
@@ -146,20 +153,10 @@
   (setq whitespace-style '(face tabs spaces empty lines-tail trailing))
   (setq whitespace-line-column 120))
 
-;; Run ruby test at point, this requires the rails test runner and `dev` (Shopify)
-(defun run-test-at-point()
- (interactive)
- (setq default-directory (locate-dominating-file buffer-file-name "Gemfile"))
-
- (setq shell-command-switch "-ic")
- (async-shell-command (format "dev test %s:%d" (buffer-file-name) (line-number-at-pos)))
-)
-(global-set-key (kbd "C-x t") 'run-test-at-point)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (company zenburn-theme yaml-mode use-package golden-ratio expand-region counsel auto-complete ace-window))))
+   '(multiple-cursors ripgrep company zenburn-theme yaml-mode use-package golden-ratio expand-region counsel auto-complete ace-window)))
