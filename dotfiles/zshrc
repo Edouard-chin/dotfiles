@@ -8,5 +8,4 @@ chruby 2.5.3
 
 # Alias
 alias be="bundle exec"
-alias rails_next="SHOPIFY_NEXT=1 DISABLE_SPRING=1 $@"
 # End Alias
