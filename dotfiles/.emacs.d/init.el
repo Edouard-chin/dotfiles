@@ -131,6 +131,7 @@
 (use-package ruby-mode
   :config
   (setq ruby-insert-encoding-magic-comment nil)
+  (setq ruby-align-to-stmt-keywords t)
   (add-hook 'ruby-mode-hook #'subword-mode))
 
 (use-package expand-region
