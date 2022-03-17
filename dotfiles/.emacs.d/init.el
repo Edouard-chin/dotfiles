@@ -12,7 +12,7 @@
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
+ ;; Your init file should conteeeain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cursor ((t (:background "systemYellowColor" :foreground "#DCDCCC"))))
  '(region ((t (:background "Orange")))))
@@ -28,6 +28,9 @@
 
 ;; Turn off splash screen
 (setq inhibit-splash-screen t)
+
+;; Do What I Mean when asking for destination directory.
+(setq dired-dwim-target t)
 
 ;; Remove the scrollbar (window mode)
 (scroll-bar-mode -1)
