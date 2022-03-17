@@ -29,6 +29,9 @@
 ;; Turn off splash screen
 (setq inhibit-splash-screen t)
 
+;; Do What I Mean when asking for destination directory.
+(setq dired-dwim-target t)
+
 ;; Remove the scrollbar (window mode)
 (scroll-bar-mode -1)
 
