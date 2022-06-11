@@ -15,6 +15,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cursor ((t (:background "systemYellowColor" :foreground "#DCDCCC"))))
+ '(highlight ((t (:background "Orange"))))
  '(region ((t (:background "Orange")))))
 
 ;; Font and text customization
@@ -28,6 +29,12 @@
 
 ;; Turn off splash screen
 (setq inhibit-splash-screen t)
+
+;; Disable tabs
+(setq-default indent-tabs-mode nil)
+
+;; 2 spaces by default
+(setq-default tab-width 2)
 
 ;; Do What I Mean when asking for destination directory.
 (setq dired-dwim-target t)
@@ -125,9 +132,14 @@
          ("C-c r" . counsel-rg)
          ("C-x l" . counsel-locate)))
 
+(use-package wgrep
+  :ensure t
+  :config
+  (setq wgrep-auto-save-buffer t))
+
 (use-package avy
   :ensure t
-  :bind (("C-'" . avy-goto-char-2))
+  :bind (("C-'" . avy-goto-char-timer))
   :config
   (setq avy-background t))
 
@@ -163,4 +175,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(multiple-cursors ripgrep company zenburn-theme yaml-mode use-package golden-ratio expand-region counsel auto-complete ace-window)))
+   '(wgrep multiple-cursors ripgrep company zenburn-theme yaml-mode use-package expand-region counsel auto-complete ace-window)))
