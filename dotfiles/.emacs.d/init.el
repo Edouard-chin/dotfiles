@@ -36,6 +36,12 @@
 ;; 2 spaces by default
 (setq-default tab-width 2)
 
+;; 2 spaces by default on JS files
+(setq-default js-indent-level 2)
+
+;; 2 spaces by default on typscript files
+(setq-default typescript-indent-level 2)
+
 ;; Do What I Mean when asking for destination directory.
 (setq dired-dwim-target t)
 
@@ -89,6 +95,9 @@
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
                  (concat user-emacs-directory "backups")))))
+
+(require 'typescript-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
@@ -175,4 +184,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(wgrep multiple-cursors ripgrep company zenburn-theme yaml-mode use-package expand-region counsel auto-complete ace-window)))
+   '(typescript-mode wgrep multiple-cursors ripgrep company zenburn-theme yaml-mode use-package expand-region counsel auto-complete ace-window)))
