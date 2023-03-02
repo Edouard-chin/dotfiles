@@ -1,4 +1,5 @@
 # Zsh
+autoload -Uz compinit && compinit
 autoload -U promptinit; promptinit
 prompt pure
 # End Zsh
