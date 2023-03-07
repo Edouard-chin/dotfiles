@@ -1,6 +1,6 @@
 [core]
-	editor = emacsclient
-        excludesfile = ~/.gitignore_global
+  editor = emacsclient
+  excludesfile = ~/.gitignore_global
 [alias]
   ci = commit
   co = checkout
@@ -9,6 +9,7 @@
   amend-head = commit --amend --reuse-message=HEAD
   pfb = "!git push --force origin \"$(git rev-parse --abbrev-ref HEAD)\""
   review = commit -m 'PR review'
+  cleanup = "!git branch -D `git branch | grep ec-`"
 
 [push]
   default = simple
@@ -22,10 +23,10 @@
 [rebase]
   autosquash = true
 [diff]
-	algorithm = patience
+  algorithm = patience
 [protocol]
-	version = 2
+  version = 2
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [init]
-	defaultBranch = main
+  defaultBranch = main
