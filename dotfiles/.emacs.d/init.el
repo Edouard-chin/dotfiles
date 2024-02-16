@@ -13,7 +13,8 @@
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+ ;; If there is more than one, they won't work right
+ '(mc/cursor-face ((((class color)) (:background "Orange"))))
  '(cursor ((t (:background "systemYellowColor" :foreground "#DCDCCC"))))
  '(highlight ((t (:background "Orange"))))
  '(region ((t (:background "Orange")))))
@@ -79,8 +80,19 @@
 ;; Find file
 (global-set-key (kbd "C-x p") 'find-name-dired)
 
+;; Interactive yank menu
+(global-set-key "\C-cy" '(lambda ()
+                           (interactive)
+                           (popup-menu 'yank-menu)))
+
 ;; Kill current buffer without having to confirm
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
+
+;; Automatically balance windows after creating one
+(advice-add 'split-window-right :after #'balance-windows)
+
+;; No "yes" or "no", only "y" or "n"
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Add a hook so that `compile` executes ruby when in ruby-mode
 (add-hook 'ruby-mode-hook
@@ -184,4 +196,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(typescript-mode wgrep multiple-cursors ripgrep company zenburn-theme yaml-mode use-package expand-region counsel auto-complete ace-window)))
+   '(web-mode typescript-mode wgrep multiple-cursors ripgrep company zenburn-theme yaml-mode use-package expand-region counsel auto-complete ace-window))
+ '(require-final-newline nil))
