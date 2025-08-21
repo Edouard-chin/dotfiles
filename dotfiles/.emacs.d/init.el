@@ -5,6 +5,9 @@
 
 (package-initialize)
 
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 ;; Start emacs maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
@@ -13,10 +16,10 @@
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right
- '(mc/cursor-face ((((class color)) (:background "Orange"))))
+ ;; If there is more than one, they won't work right.
  '(cursor ((t (:background "systemYellowColor" :foreground "#DCDCCC"))))
  '(highlight ((t (:background "Orange"))))
+ '(mc/cursor-face ((((class color)) (:background "Orange"))))
  '(region ((t (:background "Orange")))))
 
 ;; Font and text customization
@@ -27,6 +30,9 @@
 
 ;; Disable that toolbar when using X
 (tool-bar-mode -1)
+
+;; Launch emacs GUI in the front view
+(select-frame-set-input-focus (selected-frame))
 
 ;; Turn off splash screen
 (setq inhibit-splash-screen t)
@@ -42,6 +48,13 @@
 
 ;; 2 spaces by default on typscript files
 (setq-default typescript-indent-level 2)
+
+;; Open buffers side by side by default. They are stacked otherwise.
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
+
+;; Mac Option key is M-
+(setq mac-option-modifier 'meta)
 
 ;; Do What I Mean when asking for destination directory.
 (setq dired-dwim-target t)
@@ -59,7 +72,7 @@
 (global-unset-key (kbd "<down>"))
 
 ;; Enable line number number mode
-(global-linum-mode 1)
+(global-display-line-numbers-mode 1)
 (column-number-mode t)
 
 ;; revert buffers automatically when underlying files are changed externally
@@ -86,7 +99,7 @@
                            (popup-menu 'yank-menu)))
 
 ;; Kill current buffer without having to confirm
-(global-set-key (kbd "C-x k") 'kill-this-buffer)
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
 
 ;; Automatically balance windows after creating one
 (advice-add 'split-window-right :after #'balance-windows)
@@ -118,6 +131,19 @@
   :ensure t
   :config
   (global-company-mode))
+
+(use-package projectile
+  :ensure t
+  :init
+  (setq projectile-project-search-path '(("~/src" . 3)))
+  (setq projectile-enable-caching t)
+  ;; Open the directory when switching project. By default it asks a file to open.
+  (setq projectile-switch-project-action 'projectile-dired)
+  :config
+  ;; I typically use this keymap prefix on macOS
+  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+  (global-set-key (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
 
 (use-package zenburn-theme
   :ensure t
@@ -196,5 +222,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(web-mode typescript-mode wgrep multiple-cursors ripgrep company zenburn-theme yaml-mode use-package expand-region counsel auto-complete ace-window))
+   '(vterm exec-path-from-shell projectile web-mode typescript-mode wgrep multiple-cursors ripgrep company zenburn-theme yaml-mode use-package expand-region counsel auto-complete ace-window))
  '(require-final-newline nil))
